@@ -5,3 +5,6 @@ db.sqlite3
 venv/
 master
 .pytest_cache/
+.venv
+.env
+env/
