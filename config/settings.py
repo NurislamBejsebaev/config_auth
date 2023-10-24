@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
+from decouple import config as env_config
 from datetime import timedelta
 from django.conf import settings
 
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-59+vnna=hhxp(s_bj1$s*kjq&fzu277o7on^vchcj*x0j=gs3@'
+SECRET_KEY = env_config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,8 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-GOOGLE_CLIENT_ID = '894764744396-a8m756hlvei13gpqmsifd2e2vjosb4l2.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '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'
+GOOGLE_CLIENT_ID = env_config('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = env_config('GOOGLE_CLIENT_SECRET')
 
 
 AUTH_USER_MODEL = "core.User"
@@ -233,8 +233,8 @@ DJOSER = {
 }
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_CLIENT_ID',  default='')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_CLIENT_SECRET', default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env_config('GOOGLE_CLIENT_ID',  default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env_config('GOOGLE_CLIENT_SECRET', default='')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.google apis.com/auth/userinfo.email ',
     'https://www.googleapis.com/auth/userinfo.profile',
